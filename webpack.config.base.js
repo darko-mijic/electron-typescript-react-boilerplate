@@ -8,12 +8,15 @@ import validate from 'webpack-validator';
 export default validate({
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.jsx?$/,  // TODO: Remove this after refactoring to typescript is done
       loaders: ['babel-loader'],
       exclude: /node_modules/
     }, {
       test: /\.json$/,
       loader: 'json-loader'
+    },
+    {
+      test: /\.tsx?$/, loader: 'ts-loader'
     }]
   },
 
@@ -27,7 +30,7 @@ export default validate({
 
   // https://webpack.github.io/docs/configuration.html#resolve
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
+    extensions: ['', '.js', '.jsx', '.json', '.ts', '.tsx'], // TODO: Remove jsx after refactoring to typescript is done
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
 
